@@ -1,4 +1,4 @@
-# A Python and commandline interface to R modules and packages
+# Python style imports of R packages and files
 
 An rpy2 wrapper package to enable Python-style imports of R files and packages
 and expose them as commandline tools (based on python-fire) and includes automatic pandas
