@@ -28,6 +28,21 @@ like this:
     rcli path/to/my/rfile.R function1 --arg=2 --flag
 ```
 
+### Test and release
+```
+pip install .[test]
+pytest
+python setup.py sdist
+twine upload dist/*
+```
+Once everything passed successfully, tag and push to github:
+```
+version=0.1
+git commit -m "Release v${version}"
+git tag "v$version"
+git push; git push --tags
+```
+
 ## Credit
 Michel Wortmann <michel.wortmann@ouce.ox.ac.uk>
 

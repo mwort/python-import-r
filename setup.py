@@ -8,7 +8,7 @@ __copyright__ = "Copyright %s, " % date.today().year + __author__
 __version__ = '0.1'
 __email__ = "michel.wortmann@ouce.ox.ac.uk"
 __license__ = "MIT"
-__url__ = "https://github.com/mwort/python-r-import"
+__url__ = "https://github.com/mwort/python-import-r"
 
 requirements = [
     "rpy2",
@@ -33,12 +33,13 @@ setup(name="import-r",
       install_requires=requirements,
       description="Enables importing R packages and files (like python modules) in python syntax via rpy2.",
       long_description=long_description,
+      long_description_content_type="text/markdown",
       license=__license__,
       classifiers=classifiers,
       python_requires=">=3.5",
       entry_points={'console_scripts': ['rcli = r.__main__:_rcli']},
       extras_require={
         'rcli':  ["fire"],
-        'test': ['pytest', 'pandas', 'fire'],
+        'test': ['pytest', 'pandas', 'fire', 'twine'],
         },
       )
