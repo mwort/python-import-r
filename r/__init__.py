@@ -1,27 +1,25 @@
 from types import MethodType
+from .module import path
 
-from .module import RModule, path
-from .package import RPackage
+__globals = globals()  # allow globals R package to be loaded
 
 
 def add_packages():
     from rpy2.robjects.packages import InstalledPackages
-    globals().update({
-        p: RPackage(p, check_installed=False)
-        for p, pth, desc in InstalledPackages()
-    })
+    from .package import RPackage
+
+    for p, pth, desc in InstalledPackages():
+        __globals[p] = RPackage(p, check_installed=False)
 
 
 def add_modules():
     import os.path as osp
     from glob import glob
-    from .module import path_to_name
+    from .module import path_to_name, RModule
 
-    globals().update({
-        path_to_name(f): RModule(f)
-        for d in path
-        for f in glob(osp.join(d, "*.[rR]"))
-    })
+    for d in path:
+        for f in glob(osp.join(d, "*.[rR]")):
+            __globals[path_to_name(f)] = RModule(f)
 
 
 def append(self, entry):
