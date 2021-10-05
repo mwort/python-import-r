@@ -21,7 +21,7 @@ like any other python module:
     from r import my_rfile
 ```
 ### Commandline interface
-Install with cli support (`pip install import-r[cli]`) and then use R files and packages on the commandline
+Install with cli support (`pip install import-r[rcli]`) and then use R files and packages on the commandline
 like this:
 ```
     rcli utils install_packages ggplot2
