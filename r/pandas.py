@@ -2,12 +2,14 @@ import copy
 
 from rpy2.robjects import pandas2ri, numpy2ri
 import rpy2.robjects.conversion as conversion
+from rpy2.rinterface_lib.sexp import NULLType
 from rpy2.robjects import r
 
 
 OTHER_DEFAULT_CONVERSIONS = {
     # R (str) : Python type
     "NULL": type(None),
+    #NULLType: type(None),
 }
 
 
@@ -35,7 +37,7 @@ def automatic_pandas_conversion(**other_conversions):
         new_converter.py2rpy.register(k, v)
     # other conversions
     for rcode, p in other_conversions.items():
-        new_converter.py2rpy.register(p, lambda x: r(rcode))
+        new_converter.py2rpy.register(p, lambda x: r(rcode) if type(rcode) == str else rcode)
 
     npc, pdc = numpy2ri.rpy2py.registry.items(), pandas2ri.rpy2py.registry.items()
     for k, v in list(npc) + list(pdc):
@@ -44,7 +46,7 @@ def automatic_pandas_conversion(**other_conversions):
         new_converter.rpy2py.register(k, v)
     # other conversions
     for rcode, p in other_conversions.items():
-        new_converter.rpy2py.register(r(rcode), lambda x: p)
+        new_converter.rpy2py.register(r(rcode) if type(rcode) == str else rcode, lambda x: p)
 
     conversion.set_conversion(new_converter)
     return
