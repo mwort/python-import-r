@@ -5,7 +5,7 @@ from datetime import date
 
 __author__ = "Michel Wortmann"
 __copyright__ = "Copyright %s, " % date.today().year + __author__
-__version__ = '0.1'
+__version__ = '0.2'
 __email__ = "michel.wortmann@ouce.ox.ac.uk"
 __license__ = "MIT"
 __url__ = "https://github.com/mwort/python-import-r"
