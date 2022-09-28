@@ -8,7 +8,7 @@ from rpy2.robjects import r
 
 OTHER_DEFAULT_CONVERSIONS = {
     # R (str) : Python type
-    "NULL": type(None),
+    #"NULL": type(None),
     #NULLType: type(None),
 }
 
