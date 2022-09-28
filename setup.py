@@ -11,7 +11,7 @@ __license__ = "MIT"
 __url__ = "https://github.com/mwort/python-import-r"
 
 requirements = [
-    "rpy2",
+    "rpy2==3.4.*",
 ]
 
 classifiers = [
